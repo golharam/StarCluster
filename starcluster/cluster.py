@@ -185,8 +185,6 @@ class ClusterManager(managers.Manager):
         """
         Add one or more nodes to cluster
         """
-        print __file__,191
-        print iam_profile
         cl = self.get_cluster(cluster_name)
         return cl.add_nodes(num_nodes, aliases=aliases, image_id=image_id,
                             instance_type=instance_type, zone=zone,
