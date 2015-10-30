@@ -13,3 +13,7 @@ class TaggerPlugin(ClusterSetup):
             log.info("Applying tag - %s: %s" % (tag, val))
             for node in nodes:
                 node.add_tag(tag, val) 
+
+    def on_add_node(self, node, nodes, master, user, user_shell, volumes):
+        node.add_tag(tag, val)
+
