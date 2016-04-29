@@ -294,7 +294,7 @@ class ClusterManager(managers.Manager):
             try:
                 cl = self.get_cluster(tag, group=scg, load_plugins=False,
                                       load_volumes=False, require_keys=False,
-                                      load_iam_profile=True)
+                                      load_iam_profile=False)
             except exception.IncompatibleCluster as e:
                 sep = '*' * 60
                 log.error('\n'.join([sep, e.msg, sep]),
@@ -322,9 +322,9 @@ class ClusterManager(managers.Manager):
                 print 'VPC: %s' % scg.vpc_id
                 print 'Subnet: %s' % getattr(n, 'subnet_id', 'N/A')
             print 'Zone: %s' % getattr(n, 'placement', 'N/A')
-            print 'Keypair: %s' % getattr(n, 'key_name', 'N/A')
-            ipn = cl.iam_profile if cl.iam_profile else 'N/A'
-            print 'IAM instance profile: %s' % ipn
+            print 'Keypair: %s' % getattr(n, 'key_name', 'N/A')          
+            print 'IAM instance profile: %s' % getattr(n, 'iam_profile', 'N/A')
+            
             ebs_vols = []
             for node in nodes:
                 devices = node.attached_vols
